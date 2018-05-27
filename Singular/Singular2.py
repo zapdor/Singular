@@ -2,6 +2,8 @@ import email
 import imaplib
 import os
 import sys
+from .user import User
+from .dir import Dir
 from Singular.Singular1 import report_parser
 
 
