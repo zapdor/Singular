@@ -2,6 +2,7 @@ import email
 import imaplib
 import os
 import sys
+from Singular1 import report_parser
 
 
 def save_attachment(msg, download_folder="/tmp"):
@@ -29,8 +30,6 @@ def save_attachment(msg, download_folder="/tmp"):
 
 
 def mail_report_parser(username, password):
-    os.path.realpath(os.path.dirname("Singular1.py"))
-
     download_dir = os.getcwd()  # change download_dir if needed
     gmail_imap_url = 'imap.gmail.com'
 

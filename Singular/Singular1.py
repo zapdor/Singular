@@ -16,6 +16,7 @@ def report_parser(file_path):
 
     # prepare tables
     report_data['Date'] = pd.to_datetime(report_data['Date'][:-1])  # -1 always to ignore "Totals"
+    # so apparently there is a bug with pandas and european machines (and with Excel!) - this will fix if needed
     fix_pandas_bug(report_data)
     report_data['Platform'] = report_data['Campaign'].apply(lambda x: str(x).split(' ', 1)[0])
 
