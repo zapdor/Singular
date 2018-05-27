@@ -4,6 +4,7 @@ import os
 import sys
 from Singular.Singular1 import report_parser
 
+
 def save_attachment(msg, download_folder="/tmp"):
     """
     Given a message, save its attachments to the specified
@@ -27,8 +28,9 @@ def save_attachment(msg, download_folder="/tmp"):
             fp.close()
     return att_path
 
+
 def mail_report_parser(username, password):
-    download_dir = 'c:/downloads'
+    download_dir = os.getcwd()  # change download_dir if needed
     gmail_imap_url = 'imap.gmail.com'
 
     mail_connector = imaplib.IMAP4_SSL(gmail_imap_url)
@@ -52,13 +54,13 @@ def mail_report_parser(username, password):
     raw_email = data[0][1]
     email_message = email.message_from_bytes(raw_email)
 
-    save_attachment(email_message, download_dir)
-    report_parser(download_dir+"/Exercise Report.xlsx")
+    file_path = save_attachment(email_message, download_dir)
+    report_parser(file_path)
 
 
 def main():
     if len(sys.argv) != 3:
-        print("command should be: 'python Singular2.py <gmail-username> <password>'")
+        print("Command should be: 'python Singular2.py <gmail-username> <password>'")
         sys.exit(1)
     mail_report_parser(sys.argv[1], sys.argv[2])
 
